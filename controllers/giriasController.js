@@ -1,6 +1,10 @@
 const Giria = require('../models/giriasModel');
 
 module.exports = app => {
+    
+    app.get('/', (req, res) => {
+        res.status(200).json({"message": "Api funcionando na porta 3000."});
+    });
 
     app.get('/girias', async (req, res) => {
         try {
