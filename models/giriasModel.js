@@ -2,6 +2,9 @@ const mongoose = require('../database/database');
 
 const Schema = mongoose.Schema;
 const GiriaSchema = Schema({
+    nome : {
+        type: String
+    },
     giria : {
         type: String
     }
