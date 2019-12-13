@@ -1,1 +1,1 @@
-web:-m 5 index.js
+web: ./bin/www npm start
