@@ -41,8 +41,8 @@ module.exports = app => {
             const nome = req.body.nome;
             const giria_new = req.body.giria_new;
             const nome_new = req.body.nome_new;
-            const giria = await Giria.updateOne({"giria": giria, "nome": nome}, {"giria": giria_new_name, "nome": nome_new});
-            res.status(200).json(giria);
+            const giria_ret = await Giria.updateOne({"giria": giria, "nome": nome}, {"giria": giria_new, "nome": nome_new});
+            res.status(200).json(giria_ret);
         } catch {
             res.status(500).json({"message": "Ocorreu um erro"});
         }
