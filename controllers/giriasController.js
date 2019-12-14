@@ -50,10 +50,10 @@ module.exports = app => {
 
     app.delete('/girias', async (req, res) => {
         try {
-            const giria_name = req.body.name;
+            const giria = req.body.giria;
             const nome = req.body.nome;
-            const giria = await Giria.deleteOne({"giria": giria_name, "nome": nome});
-            res.status(200).json(giria);
+            const giria_ret = await Giria.deleteOne({"giria": giria, "nome": nome});
+            res.status(200).json(giria_ret);
         } catch {
             res.status(500).json({"message": "Ocorreu um erro"});
         }
