@@ -15,10 +15,11 @@ module.exports = app => {
         }
     });
 
-    app.get('/girias/:giria', async (req, res) => {
+    app.get('/girias/:nome/:giria', async (req, res) => {
         try {
+            const nome = req.params.nome;
             const giria = req.params.giria;
-            const girias = await Giria.find({"giria": giria});
+            const girias = await Giria.find({"giria": giria, "nome": nome});
             res.status(200).json(girias);
         } catch {
             res.status(500).json({"message": "Ocorreu um erro"});
@@ -36,9 +37,11 @@ module.exports = app => {
 
     app.put('/girias', async (req, res) => {
         try {
-            const giria_name = req.body.name;
-            const giria_new_name = req.body.new_name;
-            const giria = await Giria.updateOne({"giria": giria_name}, {"giria": giria_new_name});
+            const giria = req.body.giria;
+            const nome = req.body.nome;
+            const giria_new = req.body.giria_new;
+            const nome_new = req.body.nome_new;
+            const giria = await Giria.updateOne({"giria": giria, "nome": nome}, {"giria": giria_new_name, "nome": nome_new});
             res.status(200).json(giria);
         } catch {
             res.status(500).json({"message": "Ocorreu um erro"});
@@ -48,7 +51,8 @@ module.exports = app => {
     app.delete('/girias', async (req, res) => {
         try {
             const giria_name = req.body.name;
-            const giria = await Giria.deleteOne({"giria": giria_name});
+            const nome = req.body.nome;
+            const giria = await Giria.deleteOne({"giria": giria_name, "nome": nome});
             res.status(200).json(giria);
         } catch {
             res.status(500).json({"message": "Ocorreu um erro"});
